@@ -16,39 +16,16 @@
 </head>
 
 <body>
-    <div id="main" class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                @foreach ($projects as $p)
-                <div class="card text-left mb-4 border-dark">
-                    <div class="card-body">
-                        <h4 class="card-title">{{$p->name}}</h4>
-                        <p class="card-text">{{$p->description}}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+<div class="container">
+    <div class="row flex-column justify-content-center m-4">
+        <div id="one">
+            <h2>@{{ user.name }}</h2>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <form action="/projects" method="POST" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="" class="form-control" v-model="form.name">
-                        <div class="pt-2 mt-2 alert alert-danger" v-if="form.errors.get('name')" v-text="form.errors.get('name')"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Description</label>
-                        <input type="text" name="description" id="" class="form-control" v-model="form.description">
-                        <div class="pt-2 mt-2 alert alert-danger" v-if="form.errors.get('description')" v-text="form.errors.get('description')"></div>
-
-                    </div>
-                    <button type="submit" class="btn btn-primary" :disabled="form.errors.any()">Submit</button>
-                </form>
-            </div>
+        <div id="two">
+            <h2>@{{ user.name }}</h2>
         </div>
     </div>
+</div>
 </body>
 
 </html>
