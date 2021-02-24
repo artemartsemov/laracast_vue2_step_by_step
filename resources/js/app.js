@@ -67,18 +67,29 @@ class Form {
     }
 
     submit(requestType, url ){
-        axios[requestType](url, this.data())
-        .then(this.onSuccess.bind(this))
-        .catch(this.onFail.bind(this));
+        return new Promise((resolve,reject) => {
+
+            axios[requestType](url, this.data())
+                .then(response => {
+                    this.onSuccess(response.data);
+
+                    resolve(response.data);
+                })
+                .catch(error => {
+                  this.onFail(error.responce.data);
+
+                  reject(error.responce.data)
+                })
+        });
     }
 
-    onSuccess(response){
-        alert(response.data.message);
+    onSuccess(data){
+        alert(data.message);
         this.errors.clear();
     }
 
     onFail(error){
-         this.errors.record(error.response.data.errors)
+         this.errors.record(error)
     }
 
 }
@@ -97,7 +108,9 @@ const app = new Vue({
 
     methods: {
         onSubmit(){
-                this.form.submit('post', '/projects');
+                this.form.submit('post', '/projects')
+                .then(data => console.log(data))
+                .catch(errors => console.log(errors))
         }
     }
 });
