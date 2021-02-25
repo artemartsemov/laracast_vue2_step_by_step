@@ -49608,18 +49608,30 @@ Vue.config.devtools = true;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var source = {
-  user: {
-    name: 'John Doe'
+Vue.component('coupon', {
+  props: ['code'],
+  template: "\n        <input type=\"text\" :value=\"code\" @input=\"updateCode($event.target.value)\" ref=\"input\">\n    ",
+  data: function data() {
+    return {
+      invalid: ['ALLFREE']
+    };
+  },
+  methods: {
+    updateCode: function updateCode(code) {
+      if (this.invalid.includes(code)) {
+        alert('This not working');
+        this.$refs.input.value = code = '';
+      }
+
+      this.$emit('input', code);
+    }
   }
-};
-new Vue({
-  el: '#one',
-  data: source
 });
 new Vue({
-  el: '#two',
-  data: source
+  el: "#app",
+  data: {
+    coupon: "FREEBIE"
+  }
 });
 
 /***/ }),

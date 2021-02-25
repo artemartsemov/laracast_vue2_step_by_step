@@ -12,20 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
 <div class="container">
-    <div class="row flex-column justify-content-center m-4">
-        <div id="one">
-            <h2>@{{ user.name }}</h2>
-        </div>
-        <div id="two">
-            <h2>@{{ user.name }}</h2>
-        </div>
+    <div id="app" class="row m-2">
+        {{--<input type="text" :value="coupon" @input="coupon = $event.target.value">--}}
+        <coupon v-model="coupon"></coupon>
     </div>
 </div>
+
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 
 </html>
