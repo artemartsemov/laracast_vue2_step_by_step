@@ -5,13 +5,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <p>{{ status.user.name }}   said....</p>
-
                         <p>
                             A moment ago....
                         </p>
 
                         <p>
-                            {{ postedOn(status) }}
+                            {{ status.created_at | ago | capitalize }}
                         </p>
                     </div>
                     <div class="panel-body" v-text="status.body">
@@ -37,6 +36,15 @@
             Status.all()
                 .then(({data}) => this.statuses = data)
 
+        },
+
+        filters: {
+            ago(date){
+                return moment(date).fromNow();
+            },
+            capitalize(data){
+                return data.toUpperCase();
+            }
         },
 
         mounted(){
