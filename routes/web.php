@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProjectController::class,'create']);
 Route::post('/projects',[ProjectController::class,'store']);
+
+Route::get('/statuses', function (){
+    return App\Models\Status::with('user')->latest()->get();
+});
