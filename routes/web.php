@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StatusesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProjectController::class,'create']);
 Route::post('/projects',[ProjectController::class,'store']);
-
-Route::get('/statuses', function (){
-    return App\Models\Status::with('user')->latest()->get();
-});
+Route::post('/statuses',[StatusesController::class,'store']);

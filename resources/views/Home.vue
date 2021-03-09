@@ -15,6 +15,10 @@
                     </div>
                     <div class="panel-body" v-text="status.body">
                     </div>
+
+                    <add-to-stream>
+
+                    </add-to-stream>
                 </div>
             </div>
         </div>
@@ -25,8 +29,10 @@
 
     import moment from 'moment';
     import Status from '../js/models/Status';
+    import AddToStream from "../js/components/AddToStream";
 
     export default {
+        components: { AddToStream },
         data (){
             return {
                 statuses: [],
